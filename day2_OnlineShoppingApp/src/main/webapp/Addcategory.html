@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Category</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+    }
+    form {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        text-align: left;
+        width: 350px;
+    }
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        background-color: #007bff;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 15px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 12px;
+    }
+</style>
+</head>
+<body>
+    <h1>Add Category</h1>
+    <form action="AddCategory" method="post">
+        <label>Category Id:</label>
+        <input type="text" name="cid" placeholder="Category Id"/>
+        <label>Category Name:</label>
+        <input type="text" name="name" placeholder="Category Name"/>
+        <label>Description:</label>
+        <input type="text" name="dis" placeholder="Description"/>
+        <label>Image:</label>
+        <input type="text" name="img" placeholder="Image.png"/>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
