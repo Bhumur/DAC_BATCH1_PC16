@@ -15,7 +15,7 @@ public class Myfirst extends HttpServlet{
 		PrintWriter out = respond.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		out.println("<h1> Current time is : " + new Date() + "</h1>");
+		out.println("<h1> bhumur Current time is : " + new Date() + "</h1>");
 		out.println("</body>");
 		out.println("</html>");
 	}
