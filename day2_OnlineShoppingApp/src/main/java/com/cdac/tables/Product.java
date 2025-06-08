@@ -7,13 +7,13 @@ public class Product {
 	float productPrice;
 	int productQuantity;
 	public Product() {}
-	public Product(int productId, int categoryId, String categoryName, float categoryPrice, int categoryQuantity) {
+	public Product(int productId, int categoryId, String productName, float productPrice, int productQuantity) {
 		super();
 		this.productId = productId;
 		this.categoryId = categoryId;
-		this.productName = categoryName;
-		this.productPrice = categoryPrice;
-		this.productQuantity = categoryQuantity;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productQuantity = productQuantity;
 	}
 	public int getProductId() {
 		return productId;
@@ -30,25 +30,26 @@ public class Product {
 	public String getProductName() {
 		return productName;
 	}
-	public void setProductName(String categoryName) {
-		this.productName = categoryName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	public float getProductPrice() {
 		return productPrice;
 	}
-	public void setProductPrice(float categoryPrice) {
-		this.productPrice = categoryPrice;
+	public void setProductPrice(float productPrice) {
+		this.productPrice = productPrice;
 	}
 	public int getProductQuantity() {
 		return productQuantity;
 	}
-	public void setProductQuantity(int categoryQuantity) {
-		this.productQuantity = categoryQuantity;
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
 	}
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", categoryId=" + categoryId + ", categoryName=" + productName
-				+ ", categoryPrice=" + productPrice + ", categoryQuantity=" + productQuantity + "]";
+		return "Product [productId=" + productId + ", categoryId=" + categoryId + ", productName=" + productName
+				+ ", productPrice=" + productPrice + ", productQuantity=" + productQuantity + "]";
 	}
+	
 	
 }

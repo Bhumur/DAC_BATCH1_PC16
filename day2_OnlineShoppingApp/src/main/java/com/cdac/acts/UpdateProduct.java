@@ -72,20 +72,4 @@ public class UpdateProduct extends HttpServlet {
 //		out.println("</html>");
 	}
 
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("put");
-//		ProductDAOImp obj = new ProductDAOImp();
-//		obj.updateUser(
-//				Integer.parseInt(request.getParameter("categoryId")), 
-//				Integer.parseInt(request.getParameter("drop")), 
-//				request.getParameter("name"),
-//				Float.parseFloat(request.getParameter("price")),
-//				Integer.parseInt(request.getParameter("qty"))
-//				);
-//		response.sendRedirect("Admin.html");
-	}
-
 }

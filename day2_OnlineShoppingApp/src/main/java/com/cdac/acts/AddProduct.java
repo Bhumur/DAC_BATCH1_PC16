@@ -57,8 +57,8 @@ public class AddProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDAOImp obj = new ProductDAOImp();
 		obj.addProduct(new Product(
-				Integer.parseInt(request.getParameter("drop")),
 				Integer.parseInt(request.getParameter("id")),
+				Integer.parseInt(request.getParameter("drop")),
 				request.getParameter("name"),
 				Float.parseFloat(request.getParameter("price")),
 				Integer.parseInt(request.getParameter("qty"))
