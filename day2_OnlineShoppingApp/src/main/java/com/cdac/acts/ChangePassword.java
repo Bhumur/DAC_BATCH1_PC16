@@ -26,7 +26,7 @@ public class ChangePassword extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
 		ServletContext app = getServletContext();
-		dbConnection = (Connection) app.getAttribute("gobaldb");
+		dbConnection = (Connection)app.getAttribute("gobaldb");
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

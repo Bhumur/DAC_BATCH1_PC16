@@ -30,7 +30,7 @@ public class CategoryWeb extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
 		ServletContext app = getServletContext();
-		dbConnection = (Connection) app.getAttribute("globalbd");
+		dbConnection = (Connection)app.getAttribute("globalbd");
 	}
 	
 	/**
@@ -63,6 +63,7 @@ public class CategoryWeb extends HttpServlet {
 			out.println("</head>");
 			out.println("<body>");
 			out.println("<h2>Category List</h2>");
+			out.println("<h2>Hello "+ session.getAttribute("username") +"</h2>");
 			out.println("<a href='Logout'>Logout</a>");
 			out.println("<table border='1'>");
 			out.println("<thead>");

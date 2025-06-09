@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -28,14 +30,18 @@ public class ProductWeb extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
 		ServletContext app = getServletContext();
-		dbConnection = (Connection) app.getAttribute("globalbd");
+		dbConnection = (Connection)app.getAttribute("globalbd");
 	}
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession(false);
+		if(session==null) {
+			response.sendRedirect("Login.html");
+			return;
+		}
 		ProductDAOImp product = new ProductDAOImp(dbConnection);
 		Iterator<Product> productList = product.showProduct(Integer.parseInt(request.getParameter("categoryId")));
 			PrintWriter out = response.getWriter();
@@ -51,6 +57,7 @@ public class ProductWeb extends HttpServlet {
 			out.println("</head>");
 			out.println("<body>");
 			out.println("<h2>Product List</h2>");
+			out.println("<h2>Hello "+ session.getAttribute("username") +"</h2>");
 			out.println("<table border='1'>");
 			out.println("<thead>");
 			out.println("<tr>");
@@ -66,7 +73,7 @@ public class ProductWeb extends HttpServlet {
 			    out.println("<td> "+ obj.getProductName() +" </td>");
 			    out.println("<td> " + obj.getProductPrice() + " </td>");
 			    out.println("<td> "+ obj.getProductQuantity() +   "</td>");
-			    out.println("<td><a href='AddToCart?categoryId="+obj.getCategoryId()+"&productId="+obj.getProductId()+"&price="+obj.getProductPrice()+"'>Add To Cart</a></td>");
+			    out.println("<td><a href='AddToCart?categoryId="+obj.getCategoryId()+"&productId="+obj.getProductId()+"&price="+obj.getProductPrice()+"&name="+obj.getProductName()+"'>Add To Cart</a></td>");
 			    out.println("</tr>");
 			}
 			out.println("</tbody>");

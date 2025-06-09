@@ -29,7 +29,7 @@ public class AddProduct extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
 		ServletContext app = getServletContext();
-		dbConnection = (Connection) app.getAttribute("globaldb");
+		dbConnection = (Connection)app.getAttribute("globalbd");
 	}													
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -68,8 +68,8 @@ public class AddProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDAOImp obj = new ProductDAOImp(dbConnection);
 		obj.addProduct(new Product(
-				Integer.parseInt(request.getParameter("id")),
 				Integer.parseInt(request.getParameter("drop")),
+				Integer.parseInt(request.getParameter("id")),
 				request.getParameter("name"),
 				Float.parseFloat(request.getParameter("price")),
 				Integer.parseInt(request.getParameter("qty"))

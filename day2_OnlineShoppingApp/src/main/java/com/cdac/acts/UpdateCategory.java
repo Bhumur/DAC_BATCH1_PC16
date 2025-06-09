@@ -29,7 +29,7 @@ public class UpdateCategory extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
 		ServletContext app = getServletContext();
-		dbConnection = (Connection) app.getAttribute("globalbd");
+		dbConnection = (Connection)app.getAttribute("globalbd");
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

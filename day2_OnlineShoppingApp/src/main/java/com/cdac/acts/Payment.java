@@ -10,16 +10,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
+import java.time.LocalDate;
 
-import com.cdac.dao.CartDAO;
-import com.cdac.dao.CartDAOImp;
+import com.cdac.dao.CardDAOImp;
+import com.cdac.exception.CardExpiredException;
+import com.cdac.exception.InsufficentBalanceException;
+import com.cdac.exception.InvalidCardException;
+import com.cdac.tables.Card;
 
 /**
- * Servlet implementation class AddToCart
+ * Servlet implementation class Payment
  */
-@WebServlet("/AddToCart")
-public class AddToCart extends HttpServlet {
+@WebServlet("/Payment")
+public class Payment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Connection dbConnection = null;
 	
@@ -32,24 +37,40 @@ public class AddToCart extends HttpServlet {
 	}
 	
 	
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		CartDAO obj = new CartDAOImp(dbConnection);
 		HttpSession session = request.getSession(false);
 		if(session==null) {
 			response.sendRedirect("Login.html");
 		}
-		String username = (String)session.getAttribute("username");
-		int cid = Integer.parseInt(request.getParameter("categoryId"));
-		int pid = Integer.parseInt(request.getParameter("productId"));
-		float price = Float.parseFloat(request.getParameter("price"));
-		String name = request.getParameter("name");
+		String num = request.getParameter("cardnumber");
+		String expiry = request.getParameter("cardexpiry");
+		int cardcvv = Integer.parseInt(request.getParameter("cardcvv"));
+		float amo = (float)session.getAttribute("amount");
+		Card card = new Card(
+				num,
+				LocalDate.parse(expiry),
+				cardcvv,
+				0
+				);
 		
-		obj.addToCart(username, cid, pid, price,name);
-		response.sendRedirect("CartList");
+		CardDAOImp obj = new CardDAOImp(dbConnection);
+		try {
+			obj.validCard(card, amo);
+		} catch (InvalidCardException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CardExpiredException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InsufficentBalanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
