@@ -78,9 +78,10 @@ public class CartDAOImp implements CartDAO {
 	}
 
 	@Override
-	public void emptyCart() {
+	public void emptyCart(String username) {
 		try {
 			PreparedStatement ps = dbConnection.prepareStatement("delete from cart where username = ?");
+			ps.setString(1, username);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -34,12 +34,20 @@ public class CardDAOImp implements CardDAO {
 			}
 			if(amount>rs.getFloat("balance")) {
 				throw new InsufficentBalanceException("Low Balance");
+			}else {
+				ps = dbConnection.prepareStatement("update carddetail set balance = ? where cardnumber=? and cardcvv=?");
+				ps.setFloat(1, rs.getFloat("balance")-amount);
+				ps.setString(2, card.getCardNumber());
+				ps.setInt(3, card.getCvv());
+				ps.executeUpdate();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+	
 	
 	
 

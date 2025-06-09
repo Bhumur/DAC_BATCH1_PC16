@@ -15,10 +15,13 @@ import java.sql.Connection;
 import java.time.LocalDate;
 
 import com.cdac.dao.CardDAOImp;
+import com.cdac.dao.CartDAOImp;
+import com.cdac.dao.TransactionDAOImp;
 import com.cdac.exception.CardExpiredException;
 import com.cdac.exception.InsufficentBalanceException;
 import com.cdac.exception.InvalidCardException;
 import com.cdac.tables.Card;
+import com.cdac.tables.Transaction;
 
 /**
  * Servlet implementation class Payment
@@ -58,19 +61,27 @@ public class Payment extends HttpServlet {
 				);
 		
 		CardDAOImp obj = new CardDAOImp(dbConnection);
-		try {
-			obj.validCard(card, amo);
-		} catch (InvalidCardException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CardExpiredException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InsufficentBalanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		TransactionDAOImp tran = new TransactionDAOImp(dbConnection);
+		Transaction tobj = new Transaction(
+				(String)session.getAttribute("username"),
+				LocalDate.now().toString(),
+				num,
+				amo,
+				true
+				);
+			try {
+				obj.validCard(card, amo);
+				CartDAOImp o = new CartDAOImp(dbConnection);
+				o.emptyCart((String)session.getAttribute("username"));
+			} catch (InvalidCardException | CardExpiredException | InsufficentBalanceException e) {
+				tobj.setStatus(false);
+				response.getWriter().println("<h1>"+ e.getMessage()+"</h1>");
+				e.printStackTrace();
+			}
+			tran.addTransaction(tobj);
+			
+			
+			response.sendRedirect("CartList");
 	}
 
 	/**
