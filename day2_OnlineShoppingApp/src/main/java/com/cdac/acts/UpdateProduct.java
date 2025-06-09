@@ -6,13 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Iterator;
-
-import com.cdac.dao.CategoryDAOImp;
-import com.cdac.dao.ProductDAOImp;
-import com.cdac.tables.Category;
-import com.cdac.tables.Product;
 
 /**
  * Servlet implementation class UpdateProduct

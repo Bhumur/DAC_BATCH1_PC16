@@ -1,5 +1,7 @@
 package com.cdac.acts;
 
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.Iterator;
 
 import com.cdac.dao.ProductDAOImp;
@@ -18,13 +21,22 @@ import com.cdac.tables.Product;
 @WebServlet("/ProductWeb")
 public class ProductWeb extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	Connection dbConnection = null;
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+		super.init(config);
+		ServletContext app = getServletContext();
+		dbConnection = (Connection) app.getAttribute("globalbd");
+	}
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ProductDAOImp product = new ProductDAOImp();
+		ProductDAOImp product = new ProductDAOImp(dbConnection);
 		Iterator<Product> productList = product.showProduct(Integer.parseInt(request.getParameter("categoryId")));
 			PrintWriter out = response.getWriter();
 			out.println("<html>");
@@ -54,6 +66,7 @@ public class ProductWeb extends HttpServlet {
 			    out.println("<td> "+ obj.getProductName() +" </td>");
 			    out.println("<td> " + obj.getProductPrice() + " </td>");
 			    out.println("<td> "+ obj.getProductQuantity() +   "</td>");
+			    out.println("<td><a href='AddToCart?categoryId="+obj.getCategoryId()+"&productId="+obj.getProductId()+"&price="+obj.getProductPrice()+"'>Add To Cart</a></td>");
 			    out.println("</tr>");
 			}
 			out.println("</tbody>");
