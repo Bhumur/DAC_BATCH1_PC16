@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var CategoryList = [];
+	
+	function category(){
+		fetch("ProductUpdate")  // URL mapped to your servlet
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();  // Parse JSON
+        })
+        .then(data => {
+        	let {CategoryList} = data;
+        })
+        .catch(error => {
+            console.error("Error fetching product data:", error);
+        });
+	}
+	category();
+	
+	let s = "";
+	for(let i of CategoryList){
+		s+=`<option value='{}'>`
+	}
+	
+</script>
+</head>
+<body>
+	<form action="UpdateProduct" method="post">
+		<select onChange={}>
+			
+		</select>
+	</form>
+</body>
+</html>

@@ -7,19 +7,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.Connection;
 
-import com.cdac.dao.UserDAOImp;
-import com.cdac.tables.User;
+import com.cdac.dao.CartDAOImp;
 
 /**
- * Servlet implementation class AddUser
+ * Servlet implementation class DeleteItemFromCart
  */
-@WebServlet("/AddUser")
-public class AddUser extends HttpServlet {
+@WebServlet("/DeleteItemFromCart")
+public class DeleteItemFromCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Connection dbConnection = null;
+Connection dbConnection = null;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -32,15 +33,16 @@ public class AddUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		UserDAOImp obj = new UserDAOImp(dbConnection);
-		obj.addUser(new User(
-				request.getParameter("username"),
-				request.getParameter("password"),
-				request.getParameter("fname")+" "+request.getParameter("lname"),
-				request.getParameter("email"),
-				request.getParameter("city")));
-		response.sendRedirect("Login.html");
+		HttpSession session = request.getSession(false);
+		if(session==null) {
+			response.sendRedirect("Login.html");
+		}
+		String username = (String)session.getAttribute("username");
+		int cid = Integer.parseInt(request.getParameter("categoryId"));
+		int pid = Integer.parseInt(request.getParameter("productId"));
+		CartDAOImp obj = new CartDAOImp(dbConnection);
+		obj.deleteItem(username, cid, pid);
+		response.sendRedirect("CartList");
 	}
 
 	/**
@@ -51,5 +53,4 @@ public class AddUser extends HttpServlet {
 		doGet(request, response);
 	}
 
-	
 }

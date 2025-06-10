@@ -10,14 +10,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
-import com.cdac.dao.UserDAOImp;
-import com.cdac.tables.User;
+import com.cdac.dao.CategoryDAOImp;
+import com.cdac.tables.Category;
 
 /**
- * Servlet implementation class AddUser
+ * Servlet implementation class AddCategory
  */
-@WebServlet("/AddUser")
-public class AddUser extends HttpServlet {
+@WebServlet("/AddCategory")
+public class AddCategory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Connection dbConnection = null;
 	
@@ -27,20 +27,20 @@ public class AddUser extends HttpServlet {
 		super.init(config);
 		ServletContext app = getServletContext();
 		dbConnection = (Connection)app.getAttribute("globalbd");
+//		System.out.println(dbConnection);
 	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		UserDAOImp obj = new UserDAOImp(dbConnection);
-		obj.addUser(new User(
-				request.getParameter("username"),
-				request.getParameter("password"),
-				request.getParameter("fname")+" "+request.getParameter("lname"),
-				request.getParameter("email"),
-				request.getParameter("city")));
-		response.sendRedirect("Login.html");
+		CategoryDAOImp obj = new CategoryDAOImp(dbConnection);
+		obj.addCategory(new Category(
+				Integer.parseInt(request.getParameter("cid")),
+				request.getParameter("name"),
+				request.getParameter("dis"),
+				request.getParameter("img")));
+		response.sendRedirect("Admin.html");
 	}
 
 	/**
@@ -51,5 +51,4 @@ public class AddUser extends HttpServlet {
 		doGet(request, response);
 	}
 
-	
 }
