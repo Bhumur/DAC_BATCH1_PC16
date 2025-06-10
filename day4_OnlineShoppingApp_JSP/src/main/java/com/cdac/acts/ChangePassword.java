@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import com.cdac.dao.UserDAO;
 import com.cdac.dao.UserDAOImp;
@@ -19,14 +21,26 @@ import com.cdac.dao.UserDAOImp;
 @WebServlet("/ChangePassword")
 public class ChangePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Connection dbConnection = null;
+Connection dbConnection = null;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		super.init(config);
 		ServletContext app = getServletContext();
-		dbConnection = (Connection)app.getAttribute("gobaldb");
+		String dburl = app.getInitParameter("dburl");
+		String schema = app.getInitParameter("schema");
+		String user = app.getInitParameter("user");
+		String pass = app.getInitParameter("pass");
+		String load = app.getInitParameter("loader");
+		try {
+			Class.forName(load);
+			dbConnection = DriverManager.getConnection(dburl+schema,user,pass);
+			app.setAttribute("globalbd", dbConnection);	
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

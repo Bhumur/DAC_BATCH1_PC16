@@ -26,7 +26,6 @@ public class Authenticate extends HttpServlet {
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 		super.init(config);
 		ServletContext app = getServletContext();
 		String dburl = app.getInitParameter("dburl");
@@ -70,7 +69,7 @@ public class Authenticate extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("username", username);
 				if(username.equals("admin")) {
-					response.sendRedirect("Admin.html");
+					response.sendRedirect("Admin.jsp");
 				}else{
 					response.sendRedirect("CategoryWeb");
 				}

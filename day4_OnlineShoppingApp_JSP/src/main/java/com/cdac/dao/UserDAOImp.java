@@ -60,7 +60,14 @@ public class UserDAOImp implements UserDAO {
 
 	@Override
 	public void deleteUser(String username) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement psUpdateUser = dbConnection.prepareStatement("delete from users where username=?");
+			psUpdateUser.setString(1,username);
+			psUpdateUser.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

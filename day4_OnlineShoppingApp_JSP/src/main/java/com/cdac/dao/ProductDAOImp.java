@@ -60,13 +60,13 @@ public class ProductDAOImp implements ProductDOA {
 	}
 
 	@Override
-	public void deleteUser(int categoryId, int productId) {
+	public void deleteProduct(int categoryId, int productId) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void updateUser(int categoryId, int productId, String name, float price, int qty) {
+	public void updateProduct(int categoryId, int productId, String name, float price, int qty) {
 		try {
 			PreparedStatement psUpdateProduct = dbConnection.prepareStatement("update product set productName=?, productPrice=?, productQuantity=? where productId=? and categoryId=?;");
 			

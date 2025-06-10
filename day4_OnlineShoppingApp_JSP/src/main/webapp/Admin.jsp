@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin</title>
+<title>Insert title here</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -38,14 +40,12 @@
 function login(){
     window.location.href = "./Login.html";
 }
-function addUser(){
-    window.location.href = "./Adduser.html";
-}
 function allUser(){
-    window.location.href = "./AllUsers";
+    window.location.href = "./AllUsers.jsp";
 }
 function allTran(){
-    window.location.href = "./AllTransaction";
+	console.log("dwd")
+    window.location.href = "./AllTransaction.jsp";
 }
 function addCategory(){
     window.location.href = "./Addcategory.html";
@@ -60,10 +60,7 @@ function updateCategory(){
     window.location.href = "./UpdateCategory";
 }
 function updateProduct(){
-    window.location.href = "./UpdateProduct";
-}
-function deleteUser(){
-    window.location.href = "./DeleteUser";
+    window.location.href = "./UpdateProduct.jsp";
 }
 function deleteProduct(){
     window.location.href = "./DeleteProduct";
@@ -74,10 +71,19 @@ function deleteCategory(){
 </script>
 </head>
 <body>
-    <h1>Admin Panel</h1>
+<%
+HttpSession session = request.getSession(false);
+
+if(session==null) {
+	response.sendRedirect("Login.html");
+}
+
+
+%>
+
+	<h1>Admin Panel</h1>
     <div class="button-container style='display-flex '">
     	<button onclick="login()">Login</button>
-        <button onclick="addUser()">Add User</button>
         <button onclick="allUser()">All Users</button>
         <button onclick="allTran()">All Transaction</button>
         <button onclick="addCategory()">Add Category</button>
@@ -85,7 +91,6 @@ function deleteCategory(){
         <button onclick="updateUser()">Update User</button>
         <button onclick="updateCategory()">Update Category</button>
         <button onclick="updateProduct()">Update Product</button>
-        <button onclick="deleteUser()">Delete User</button>
         <button onclick="deleteProduct()">Delete Product</button>
         <button onclick="deleteCategory()">Delete Category</button>
     </div>

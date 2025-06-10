@@ -40,7 +40,7 @@ public class AddCategory extends HttpServlet {
 				request.getParameter("name"),
 				request.getParameter("dis"),
 				request.getParameter("img")));
-		response.sendRedirect("Admin.html");
+		response.sendRedirect("Admin.jsp");
 	}
 
 	/**

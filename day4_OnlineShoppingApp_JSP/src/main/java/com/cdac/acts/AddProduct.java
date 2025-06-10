@@ -74,7 +74,7 @@ public class AddProduct extends HttpServlet {
 				Float.parseFloat(request.getParameter("price")),
 				Integer.parseInt(request.getParameter("qty"))
 				));
-		response.sendRedirect("Admin.html");
+		response.sendRedirect("Admin.jsp");
 	}
 
 }

@@ -64,7 +64,7 @@ public class UpdateCategory extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CategoryDAO obj = new CategoryDAOImp(dbConnection);
 		obj.updateCategory(Integer.parseInt(request.getParameter("drop")) , request.getParameter("name"), request.getParameter("dis"), request.getParameter("img"));
-		response.sendRedirect("Admin.html");
+		response.sendRedirect("Admin.jsp");
 	}
 
 }
