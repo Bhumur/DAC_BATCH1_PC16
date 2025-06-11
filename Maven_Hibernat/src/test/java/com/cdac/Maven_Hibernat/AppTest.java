@@ -1,4 +1,4 @@
-package com.cdac.FirstMaven;
+package com.cdac.Maven_Hibernat;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
