@@ -71,15 +71,7 @@ function deleteCategory(){
 </script>
 </head>
 <body>
-<%
-HttpSession session = request.getSession(false);
 
-if(session==null) {
-	response.sendRedirect("Login.html");
-}
-
-
-%>
 
 	<h1>Admin Panel</h1>
     <div class="button-container style='display-flex '">

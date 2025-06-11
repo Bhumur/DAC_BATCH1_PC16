@@ -44,6 +44,6 @@
 	City : <jsp:getProperty property="city" name="objUser"/>
 	Username : <jsp:getProperty property="username" name="objUser"/>
 	Password : <jsp:getProperty property="password" name="objUser"/>
-	<a href="AddUser.jsp">Confirm</a></br><a href="Login.html">Delete</a>
+	<a href="AddUser">Confirm</a></br><a href="Login.html">Delete</a>
 </body>
 </html>
