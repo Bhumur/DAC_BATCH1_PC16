@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import org.hibernate.Session;
@@ -45,9 +47,14 @@ public class Authentication extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		if(obj.validUser(request.getParameter("username"), request.getParameter("password"))) {
-			response.sendRedirect("Home.jsp");
+			HttpSession session = request.getSession(true);
+			session.setAttribute("username", request.getParameter("username"));
+			if(request.getParameter("username").equals("admin")) {
+				response.sendRedirect("Admin.jsp");
+			}else {
+				response.sendRedirect("Home.jsp");
+			}
 		}else {
 			response.getWriter().println("INVALID");
 		}

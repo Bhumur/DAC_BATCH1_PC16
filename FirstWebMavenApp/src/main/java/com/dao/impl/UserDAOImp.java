@@ -2,10 +2,12 @@ package com.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import com.entity.User;
 
@@ -27,13 +29,17 @@ public class UserDAOImp implements UserDAO {
 
 	@Override
 	public Iterator<User> showUsers() {
-		return null;
+		Query<User> query = hiberSession.createQuery("from User", User.class);
+		List<User> list = query.getResultList();
+		return list.iterator();
 	}
 
 	@Override
 	public void deleteUser(String username) {
-		
-
+		User u = hiberSession.find(User.class, username);
+		hiberSession.beginTransaction();
+		hiberSession.remove(u);
+		hiberSession.getTransaction().commit();
 	}
 
 	@Override
