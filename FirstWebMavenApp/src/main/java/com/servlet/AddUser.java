@@ -1,7 +1,6 @@
 package com.servlet;
 
 import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,28 +8,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-import com.dao.impl.UserDAOImp;
-import com.entity.User;
-
 /**
- * Servlet implementation class Authentication
+ * Servlet implementation class AddUser
  */
-@WebServlet("/Authentication")
-public class Authentication extends HttpServlet {
+@WebServlet("/AddUser")
+public class AddUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	SessionFactory factory =null;
-	UserDAOImp obj = null;
+
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		super.init(config);
-		factory = (SessionFactory)getServletContext().getAttribute("hiberFactory");
-		obj = new UserDAOImp(factory);
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -45,15 +34,8 @@ public class Authentication extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		if(obj.validUser(request.getParameter("username"), request.getParameter("password"))) {
-			response.sendRedirect("Home.jsp");
-		}else {
-			response.getWriter().println("INVALID");
-		}
-	
-		
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

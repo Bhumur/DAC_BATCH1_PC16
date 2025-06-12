@@ -1,7 +1,7 @@
-<%@page import="com.cdac.dao.UserDAOImp"%>
+<%@page import="com.dao.impl.UserDAOImp"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="com.cdac.tables.User"%>
+<%@page import="com.doa.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="objUser" type="com.cdac.tables.User" scope="session"></jsp:useBean>
+<jsp:useBean id="objUser" type="com.doa.User" scope="session"></jsp:useBean>
 	<%
 	ServletContext app = getServletContext();
 	String dburl = app.getInitParameter("dburl");

@@ -37,7 +37,7 @@
 </head>
 <body>
 	
-	<jsp:useBean id="objUser" class="com.cdac.tables.User" scope="session"></jsp:useBean>
+	<jsp:useBean id="objUser" class="com.doa.User" scope="session"></jsp:useBean>
 	<jsp:setProperty property="*" name="objUser"/>
 	Name : <jsp:getProperty property="name" name="objUser"/>
 	Email : <jsp:getProperty property="email" name="objUser"/>

@@ -1,6 +1,6 @@
-<%@page import="com.cdac.tables.Transaction"%>
+<%@page import="com.doa.Transaction"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="com.cdac.dao.TransactionDAOImp"%>
+<%@page import="com.dao.impl.TransactionDAOImp"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
