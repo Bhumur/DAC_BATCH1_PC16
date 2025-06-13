@@ -1,8 +1,11 @@
 package com.entity;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +20,9 @@ public class Category {
 	String categoryDiscription;
 	@Column(name="categoryImg")
 	String categoryImg;
+	
+	@OneToMany(mappedBy = "category")
+	Set<Product> products;
 	public Category() {}
 	public Category(int categoryId, String categoryName, String categoryDiscription, String categoryImg) {
 		super();
@@ -49,10 +55,17 @@ public class Category {
 	public void setCategoryImg(String categoryImg) {
 		this.categoryImg = categoryImg;
 	}
+	public Set<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
 	@Override
 	public String toString() {
 		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", categoryDiscription="
-				+ categoryDiscription + ", categoryImg=" + categoryImg + "]";
+				+ categoryDiscription + ", categoryImg=" + categoryImg + ", products=" + products + "]";
 	}
+	
 }
 

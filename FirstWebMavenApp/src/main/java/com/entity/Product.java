@@ -3,22 +3,28 @@ package com.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="product")
 public class Product {
 	
+	@ManyToOne
+	@JoinColumn(name="categoryId", insertable = false, updatable = false)
+	Category category;
+	
 	@EmbeddedId
 	ProductId productid;
 	
-	@Column(name="productsName")
+	@Column(name="productName")
 	String productsName;
 	
-	@Column(name="productsPrice")
+	@Column(name="productPrice")
 	float productsPrice;
 	
-	@Column(name="productsQuantity")
+	@Column(name="productQuantity")
 	int productQuantity;
 	
 	public Product() {}

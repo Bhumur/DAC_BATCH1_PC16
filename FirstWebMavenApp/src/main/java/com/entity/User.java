@@ -1,8 +1,11 @@
 package com.entity;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +22,8 @@ public class User {
 	String email;
 	@Column(name="city")
 	String city;
+	@OneToMany
+	Set<Cart> cart;
 	public User() {}
 	public User(String username, String password, String name, String email, String city) {
 		super();
@@ -57,6 +62,12 @@ public class User {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public Set<Cart> getCart() {
+		return cart;
+	}
+	public void setCart(Set<Cart> cart) {
+		this.cart = cart;
 	}
 	@Override
 	public String toString() {

@@ -1,7 +1,6 @@
-package com.cdac.acts;
+package com.servlet;
 
 import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,43 +9,41 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Connection;
 
-import com.cdac.dao.CartDAO;
-import com.cdac.dao.CartDAOImp;
+import org.hibernate.SessionFactory;
+
+import com.dao.impl.CartDAOImp;
 
 /**
- * Servlet implementation class AddToCart
+ * Servlet implementation class RemoveQuantity
  */
-@WebServlet("/AddToCart")
-public class AddToCart extends HttpServlet {
+@WebServlet("/RemoveQuantity")
+public class RemoveQuantity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Connection dbConnection = null;
-	
-	@Override
+	SessionFactory factory =null;
+	CartDAOImp obj = null;
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 		super.init(config);
-		ServletContext app = getServletContext();
-		dbConnection = (Connection)app.getAttribute("globalbd");
+		factory = (SessionFactory)getServletContext().getAttribute("hiberFactory");
+		obj = new CartDAOImp(factory);
 	}
-	
-	
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CartDAO obj = new CartDAOImp(dbConnection);
 		HttpSession session = request.getSession(false);
 		if(session==null) {
 			response.sendRedirect("Login.html");
 		}
 		String username = (String)session.getAttribute("username");
-		int cid = Integer.parseInt(request.getParameter("categoryId"));
-		int pid = Integer.parseInt(request.getParameter("productId"));
-		
-		obj.addToCart(username, cid, pid);
-		response.sendRedirect("CartList");
+		int cid = Integer.parseInt(request.getParameter("cid"));
+		int pid = Integer.parseInt(request.getParameter("pid"));
+		obj.removeQuantityFromCart(username, cid, pid);
+		response.sendRedirect("CartList.jsp");
 	}
 
 	/**

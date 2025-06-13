@@ -1,4 +1,4 @@
-package com.cdac.acts;
+package com.servlet;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
@@ -12,8 +12,10 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 
-import com.cdac.dao.CartDAO;
-import com.cdac.dao.CartDAOImp;
+import org.hibernate.SessionFactory;
+
+import com.dao.impl.CartDAOImp;
+
 
 /**
  * Servlet implementation class AddToCart
@@ -21,14 +23,14 @@ import com.cdac.dao.CartDAOImp;
 @WebServlet("/AddToCart")
 public class AddToCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Connection dbConnection = null;
+	CartDAOImp obj = null;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		super.init(config);
 		ServletContext app = getServletContext();
-		dbConnection = (Connection)app.getAttribute("globalbd");
+		obj = new CartDAOImp((SessionFactory)app.getAttribute("hiberFactory"));
 	}
 	
 	
@@ -36,7 +38,6 @@ public class AddToCart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CartDAO obj = new CartDAOImp(dbConnection);
 		HttpSession session = request.getSession(false);
 		if(session==null) {
 			response.sendRedirect("Login.html");
@@ -46,7 +47,7 @@ public class AddToCart extends HttpServlet {
 		int pid = Integer.parseInt(request.getParameter("productId"));
 		
 		obj.addToCart(username, cid, pid);
-		response.sendRedirect("CartList");
+		response.sendRedirect("CartList.jsp");
 	}
 
 	/**

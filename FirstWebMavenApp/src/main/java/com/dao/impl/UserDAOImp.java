@@ -1,6 +1,5 @@
 package com.dao.impl;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +12,6 @@ import com.entity.User;
 
 import jakarta.servlet.ServletContext;
 
-
 public class UserDAOImp implements UserDAO {
 	Session hiberSession =null;
 	public UserDAOImp(SessionFactory factory) {
@@ -25,6 +23,11 @@ public class UserDAOImp implements UserDAO {
 		hiberSession.beginTransaction();
 		hiberSession.persist(u);
 		hiberSession.getTransaction().commit();
+	}
+	
+	@Override
+	public User getUser(String username) {
+		return hiberSession.find(User.class, username);
 	}
 
 	@Override

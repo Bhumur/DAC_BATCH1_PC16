@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import com.entity.Category;
 import com.entity.Product;
 
 
@@ -26,9 +27,9 @@ public class ProductDAOImp implements ProductDOA {
 	public Iterator<Product> showProduct(int categoryId) {
 		//Query<Product> query = session.createQuery("FROM Product WHERE categoryId = :cid", Product.class);
 
-		Query<Product> query = session.createNativeQuery("SELECT * FROM product WHERE categoryId = :cid", Product.class);
-		query.setParameter("cid", categoryId);
-		return query.getResultList().iterator();
+		//Query<Product> query = session.createNativeQuery("SELECT * FROM product WHERE categoryId = :cid", Product.class);
+		Category cat = session.find(Category.class, categoryId);
+		return cat.getProducts().iterator();
 	}
 
 	@Override
