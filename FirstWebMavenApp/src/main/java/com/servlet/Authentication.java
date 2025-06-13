@@ -1,7 +1,6 @@
 package com.servlet;
 
 import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,12 +10,9 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import com.dao.impl.UserDAOImp;
-import com.entity.User;
 
 /**
  * Servlet implementation class Authentication
@@ -53,7 +49,7 @@ public class Authentication extends HttpServlet {
 			if(request.getParameter("username").equals("admin")) {
 				response.sendRedirect("Admin.jsp");
 			}else {
-				response.sendRedirect("Home.jsp");
+				response.sendRedirect("Category.jsp");
 			}
 		}else {
 			response.getWriter().println("INVALID");

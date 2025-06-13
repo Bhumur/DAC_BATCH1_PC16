@@ -2,7 +2,7 @@ package com.dao.impl;
 
 import java.util.Iterator;
 
-import com.cdac.tables.Category;
+import com.entity.Category;
 
 public interface CategoryDAO {
 	public Iterator<Category> allCategory();

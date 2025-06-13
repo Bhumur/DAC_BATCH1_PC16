@@ -2,7 +2,8 @@ package com.dao.impl;
 
 import java.util.Iterator;
 
-import com.cdac.tables.Product;
+import com.entity.Product;
+
 
 public interface ProductDOA {
 	public Iterator<Product> showProduct(int categoryId);
