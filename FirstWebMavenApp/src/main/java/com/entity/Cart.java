@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="cart")
 public class Cart {
+	
 	@ManyToOne
 	@JoinColumn(name="username", insertable = false, updatable = false)
 	User user;

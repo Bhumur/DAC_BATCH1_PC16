@@ -68,8 +68,8 @@ public class CartDAOImp implements CartDAO {
 		if(c.getQuantity()==1) {
 			session.remove(cartid);
 		}else {
-			c=new Cart(c.getCartId(),c.getName(),c.getQuantity()-1,c.getPrice());
-			session.merge(c);
+			Cart x=new Cart(c.getCartId(),c.getName(),c.getQuantity()-1,c.getPrice());
+			session.merge(x);
 		}
 		session.getTransaction().commit();
 	}
@@ -78,9 +78,9 @@ public class CartDAOImp implements CartDAO {
 	public void addQuantityFromCart(String username, int cId, int pId) {
 		CartId cartid = new CartId(username,cId,pId);
 		Cart c = session.find(Cart.class, cartid);
-		c=new Cart(c.getCartId(),c.getName(),c.getQuantity()+1,c.getPrice());
+		Cart x=new Cart(c.getCartId(),c.getName(),c.getQuantity()+1,c.getPrice());
 		session.beginTransaction();
-		session.merge(c);
+		session.merge(x);
 		session.getTransaction().commit();
 	}
 }

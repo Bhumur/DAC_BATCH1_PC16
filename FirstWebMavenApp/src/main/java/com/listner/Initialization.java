@@ -30,8 +30,8 @@ public class Initialization implements ServletContextListener {
     	Properties property = new Properties();
     	property.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
     	property.setProperty("hibernate.connection.username", "root");
-    	property.setProperty("hibernate.connection.password", "cdac");
-    	property.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/user_batch1");
+    	property.setProperty("hibernate.connection.password", "root");
+    	property.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/cdac");
     	property.setProperty("hibernate.hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
     	property.setProperty("hibernate.hdm2dd/auto", "validate");
     	property.setProperty("hibernate.show_sql", "true");

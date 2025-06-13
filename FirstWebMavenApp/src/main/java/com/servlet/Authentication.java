@@ -43,6 +43,7 @@ public class Authentication extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		if(obj.validUser(request.getParameter("username"), request.getParameter("password"))) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("username", request.getParameter("username"));
