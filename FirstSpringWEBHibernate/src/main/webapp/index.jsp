@@ -1,5 +1,7 @@
 <html>
 <body>
-<a href="spring/login"><h2>Enter</h2></a>
+<script type="text/javascript">
+	location.href="spring/login";
+</script>
 </body>
 </html>
