@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form action="uploadFile" modelAttribute="fileUpload" method="POST" enctype="multipart/form-data"">
+	<form:form action="uploadFile" modelAttribute="fileUpload" method="POST" enctype="multipart/form-data">
 		Select <input type="file" name="fileAttachment" />
 		<form:button >Upload</form:button>
 	</form:form>
