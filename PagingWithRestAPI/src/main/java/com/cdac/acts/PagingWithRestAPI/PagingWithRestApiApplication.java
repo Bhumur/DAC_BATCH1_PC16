@@ -1,13 +1,13 @@
-package com.cdac.RestAPIDTO;
+package com.cdac.acts.PagingWithRestAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestApidtoApplication {
+public class PagingWithRestApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestApidtoApplication.class, args);
+		SpringApplication.run(PagingWithRestApiApplication.class, args);
 	}
 
 }
