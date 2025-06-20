@@ -1,0 +1,5 @@
+package com.cdac.rest.UserRestAPI.repo;
+
+public interface UserRespo implements Cr{
+
+}

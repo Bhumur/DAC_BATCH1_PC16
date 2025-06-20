@@ -1,0 +1,5 @@
+package com.cdac.rest.UserRestAPI.service;
+
+public class UserServiceImpl implements UserService {
+
+}

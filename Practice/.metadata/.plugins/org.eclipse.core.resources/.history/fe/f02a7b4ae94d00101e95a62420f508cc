@@ -1,0 +1,14 @@
+@RestController
+@CrossOrigin(origins = "http://localhost:3000") // Replace with your frontend origin
+public class UserController {
+    @Autowired
+    UserService uService;
+
+    @PostMapping("/isvalid")
+    public boolean isValidUser(@RequestBody UserDTO u) {
+        System.out.println("dfasd");
+        String userName = u.getUsername();
+        String password = u.getPassword();
+        return uService.isValid(userName, password);
+    }
+}
