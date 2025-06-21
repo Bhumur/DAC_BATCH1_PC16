@@ -1,7 +1,0 @@
-package com.cdac.rest.UserRestAPI.repo;
-
-import org.springframework.data.repository.CrudRepository;
-
-public interface UserRespo extends CrudRepository<T, ID>{
-
-}

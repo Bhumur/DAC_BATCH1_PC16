@@ -1,9 +1,0 @@
-package com.cdac.rest.UserRestAPI.service;
-
-import java.util.Iterator;
-
-public interface UserService {
-
-	public boolean isValid(String username, String password);
-	public Iterator<User> allUser();
-}
